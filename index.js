@@ -1,6 +1,7 @@
 import mysql from 'mysql2'
 import fs from 'fs'
 import { CREDENTIALS } from './src/constants.js'
+
 import {
     createDb,
     createTables,

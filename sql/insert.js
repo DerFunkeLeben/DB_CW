@@ -97,6 +97,26 @@ INSERT INTO regions
 (5, 'Республика Коми'),
 (6, 'Хабаровская область');`
 
+const insertDocKrasnoyarsk = `
+    INSERT INTO doctors
+    (id, specialtyId, organizationId, regionId, firstName, middleName, lastName, email, phone, experience) 
+    
+    SELECT 
+        100,
+        1,
+        1,
+        region.id,
+        'Виктор',
+        'Андреевич',
+        'Смирнов',
+        'a@a.ru',
+        '8989898',
+        '3'
+    FROM regions
+    WHERE region.name = 'Красноярский край'
+    LIMIT 1;
+`
+
 const insertAll = [
     insertDoctors,
     insertSubSpecialties,
@@ -106,4 +126,4 @@ const insertAll = [
     insertRegions,
 ]
 
-export { insertAll }
+export { insertAll, insertDocKrasnoyarsk }
