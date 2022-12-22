@@ -7,7 +7,8 @@ const createDoctors = `CREATE TABLE doctors (
     middleName varchar(128),
     lastName varchar(128),
     email varchar(128),
-    phone int(11)
+    phone int(11),
+    experience int(4)
   ) ENGINE=MyISAM DEFAULT CHARSET=utf8;`
 
 const createSubSpecialties = `CREATE TABLE subSpecialties (

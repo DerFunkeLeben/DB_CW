@@ -1,8 +1,13 @@
 import mysql from 'mysql2'
 import fs from 'fs'
 import { CREDENTIALS } from './src/constants.js'
-import { createDb, createTables, insertTables, createCSV } from './src/functions.js'
-import { selectAllDocs } from '../sql/select.js'
+import {
+    createDb,
+    createTables,
+    insertTables,
+    dropTable,
+    createAllCSV,
+} from './src/functions.js'
 
 // https://www.w3schools.com/nodejs/nodejs_mysql.asp
 
@@ -12,7 +17,8 @@ con.connect(function (err) {
     if (err) throw err
 
     // createDb(con)
+    // dropTable(con)
     // createTables(con)
     // insertTables(con)
-    createCSV(con, selectAllDocs, 'allDocs.csv')
+    // createAllCSV(con)
 })

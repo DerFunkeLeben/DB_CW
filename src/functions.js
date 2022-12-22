@@ -2,6 +2,14 @@ import fs from 'fs'
 
 import { createAll } from '../sql/create.js'
 import { insertAll } from '../sql/insert.js'
+import {
+    selectAllDocs,
+    selectAllSubSpecs,
+    selectAllSpecs,
+    selectAllOrgs,
+    selectAllOrgTypes,
+    selectAllRegions,
+} from '../sql/select.js'
 
 export const createDb = con => {
     con.query('CREATE DATABASE docs', function (err, result) {
@@ -28,6 +36,13 @@ export const insertTables = con => {
     })
 }
 
+export const dropTable = con => {
+    con.query('DROP TABLE organizations', function (err, result) {
+        if (err) throw err
+        console.log('Table dropped')
+    })
+}
+
 export const createCSV = (con, query, fileName) => {
     con.query(query, function (err, result) {
         if (err) throw err
@@ -47,4 +62,13 @@ export const createCSV = (con, query, fileName) => {
 
         fs.writeFileSync(`./csv/${fileName}`, csvText)
     })
+}
+
+export const createAllCSV = con => {
+    createCSV(con, selectAllDocs, 'docs.csv')
+    createCSV(con, selectAllRegions, 'regions.csv')
+    createCSV(con, selectAllSubSpecs, 'subSpecs.csv')
+    createCSV(con, selectAllSpecs, 'specialties.csv')
+    createCSV(con, selectAllOrgs, 'orgs.csv')
+    createCSV(con, selectAllOrgTypes, 'orgTypes.csv')
 }
